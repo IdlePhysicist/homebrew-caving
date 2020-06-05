@@ -5,7 +5,7 @@ class CaveLogger < Formula
 
   version "1.2.1"
   url "https://github.com/IdlePhysicist/cave-logger/archive/v#{version}.tar.gz"
-  sha256 "ce3b66a3ac59d92bef1319c716a609884b2fdbeaa2f56214d4e8026344bdad1d"
+  sha256 "a0cd5fee2b85f121e0a303124bbf1614ead0cfc7a1da138f5c2ad12f1a86ded2"
 
   head "https://github.com/IdlePhysicist/cave-logger.git"
 
