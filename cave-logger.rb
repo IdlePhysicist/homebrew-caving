@@ -26,5 +26,6 @@ class CaveLogger < Formula
 
   test do
     system "which","#{bin}/cave-logger"
+    system "#{bin}/cave-logger", "--version"
   end
 end
