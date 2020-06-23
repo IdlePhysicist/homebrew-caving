@@ -16,12 +16,18 @@ class CaveLogger < Formula
     version "HEAD"
   end
 
+  if OS.mac?
+    os = "darwin"
+  else
+    os = "linux"
+  end 
+
   def install
     bin.mkpath
 
     # ENV.deparallelize  # if your formula fails when building in parallel
     system "python3", "./scripts/make-db.py"
-    system "make", "BUILD=#{bin}", "version=#{version}"
+    system "make", "#{os}" "BUILD=#{bin}", "version=#{version}"
   end
 
   test do
