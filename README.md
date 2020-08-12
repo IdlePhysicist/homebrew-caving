@@ -38,10 +38,10 @@ For help using Homebrew visit [brew.sh](https://brew.sh/)
 
 ### Install Therion
 ```
-brew install --verbose idlephysicist/caving/therion
+brew install --env=std --verbose idlephysicist/caving/therion
 ```
 
-This formula targets Therion v5.5.0
+This formula targets Therion v5.5.1
 
 If you want to install the latest commit from `master` add the `--HEAD` flag after `brew install`. 
 
