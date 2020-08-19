@@ -3,9 +3,9 @@ class CaveLogger < Formula
   desc "A caving database interface written in Go."
   revision 1
 
-  version "1.2.2"
+  version "2.0.0-a1"
   url "https://github.com/IdlePhysicist/cave-logger/archive/v#{version}.tar.gz"
-  sha256 "8e9ed8f898efd440a0532859717e8619b98c4a8cf96a9a4058820441b457f370"
+  sha256 "6204e9416a04dd64f287cfb8928d976e5ddbd3afac0c2a86abbf666c49eb0222"
 
   head "https://github.com/IdlePhysicist/cave-logger.git"
 
@@ -16,18 +16,17 @@ class CaveLogger < Formula
     version "HEAD"
   end
 
-  if OS.mac?
-    os = "darwin"
-  else
-    os = "linux"
-  end 
-
   def install
     bin.mkpath
 
     # ENV.deparallelize  # if your formula fails when building in parallel
     system "python3", "./scripts/make-db.py"
-    system "make", "#{os}" "BUILD=#{bin}", "version=#{version}"
+    if OS.mac?
+      system "make", "darwin", "BUILD=#{bin}", "version=#{version}"
+    else
+      system "make", "linux", "BUILD=#{bin}", "version=#{version}"
+    end
+
   end
 
   test do
