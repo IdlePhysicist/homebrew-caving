@@ -2,9 +2,9 @@ class Therion < Formula
   homepage "https://therion.speleo.sk"
   desc "Therion creates realistic 3D models from 2D maps without quantity of additional information. LRUD dimensions are also supported."
 
-  version "5.5.1"
+  version "5.5.6"
   url "https://github.com/therion/therion/archive/v#{version}.tar.gz"
-  sha256 "91862fc744e02bee1623aa6201303195d60dc9f6c50525a2d312b0865e4afe11"
+  sha256 "2b15241877d49d60825e446004f5c7c49bf0f1ba3ef33483d457d4b4d18c9f98"
 
   head "https://github.com/therion/therion.git"
 
@@ -31,6 +31,8 @@ class Therion < Formula
 
     ENV.deparallelize
 
+    # This removes the `doc` build rule, to solve pdftex not found
+    system "sed -ie '/^all:/ s/ doc / /g' Makefile"
     system "make", "config-macosx"
     system "make"
     system "make", "install"
