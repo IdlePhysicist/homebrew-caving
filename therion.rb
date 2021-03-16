@@ -2,9 +2,9 @@ class Therion < Formula
   homepage "https://therion.speleo.sk"
   desc "Therion creates realistic 3D models from 2D maps without quantity of additional information. LRUD dimensions are also supported."
 
-  version "5.5.6"
+  version "5.5.7"
   url "https://github.com/therion/therion/archive/v#{version}.tar.gz"
-  sha256 "2b15241877d49d60825e446004f5c7c49bf0f1ba3ef33483d457d4b4d18c9f98"
+  sha256 "be5486a9ad3c6691686efe1aec5cf60ed237082b2f132f8c15bbc4a27dd0042d"
 
   head "https://github.com/therion/therion.git"
 

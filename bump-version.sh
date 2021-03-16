@@ -2,22 +2,15 @@
 
 #which wget > /dev/null 2>&1 || { echo "wget not installed, aborting"; exit 1 }
 
-if [[ $# -lt 2 ]]; then
+if [[ $# -lt 3 ]]; then
   echo "bump-version.sh
-USAGE: ./bump-version.sh [ORG] REPO VERSION"
+USAGE: ./bump-version.sh ORG REPO VERSION"
   exit 1
 fi
 
-ORG=${1:IdlePhysicist}
+ORG=$1
 REPO=$2
 VERSION=$3
-for v in $REPO $VERSION; do
-  if [[ -z $v ]]; then
-    echo "$v not specified"
-    exit 1
-  fi
-done
-
 
 URL="https://github.com/$ORG/$REPO/archive/v$VERSION.tar.gz"
 wget -q -O /tmp/v$VERSION.tar.gz $URL
