@@ -3,9 +3,9 @@ class CaveLogger < Formula
   desc "A caving database interface written in Go."
   revision 1
 
-  version "2.0.0-rc2"
+  version "2.0.0-rc3"
   url "https://github.com/IdlePhysicist/cave-logger/archive/v#{version}.tar.gz"
-  sha256 "32586b547348dc5289d0a4d76701d19a74e1af8805e8cb940e98c6472792de5e"
+  sha256 "164eda42c30e88e22eab2b032219749f1d569c6244b967b5457a7b613001096b"
 
   head "https://github.com/IdlePhysicist/cave-logger.git"
 
