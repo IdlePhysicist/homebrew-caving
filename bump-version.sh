@@ -22,8 +22,8 @@ fi
 SHA=$(shasum -a 256 /tmp/v$VERSION.tar.gz | cut -d ' ' -f1)
 
 OLD_V=$(grep 'version \"' ./$REPO.rb | head -n 1 | sed -e 's/\"/\\\"/g')
-sed -ie "s/${OLD_V}/  version \"$VERSION\"/g" ./$REPO.rb
+sed -i -e "s/${OLD_V}/  version \"$VERSION\"/g" ./$REPO.rb
 
 OLD_SHA=$(grep 'sha256' ./$REPO.rb | sed -e 's/\"/\\\"/g')
-sed -ie "s/${OLD_SHA}/  sha256 \"${SHA}\"/g" ./$REPO.rb
+sed -i -e "s/${OLD_SHA}/  sha256 \"${SHA}\"/g" ./$REPO.rb
 
