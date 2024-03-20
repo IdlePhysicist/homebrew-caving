@@ -2,19 +2,17 @@ class Therion < Formula
   homepage "https://therion.speleo.sk"
   desc "Therion creates realistic 3D models from 2D maps without quantity of additional information. LRUD dimensions are also supported."
 
-  version "6.0.6"
+  version "6.2.0"
   url "https://github.com/therion/therion/archive/v#{version}.tar.gz"
-  sha256 "911eca50c6e4a60cbd3e1349b04b9aea4c4daa0ca13b72426a76efc951585c24"
+  sha256 "8742f77859cbbe122c9b853135543e6a02bcd940dac6aa2f2fac7effc8d0c990"
 
   head "https://github.com/therion/therion.git"
 
-  depends_on "freetype"
-  depends_on "imagemagick"
-  depends_on "lcdf-typetools"
-  depends_on "pkg-config"
+  depends_on "pkgconfig"
   depends_on "proj"
+  depends_on "fmt"
   depends_on "vtk"
-  depends_on "wxmac"
+  depends_on "wxwidgets"
 
   def install
     inreplace "makeinstall.tcl" do |s|
@@ -23,18 +21,26 @@ class Therion < Formula
       s.gsub! "/Applications", prefix
     end
 
+    # This sets the correct pkg-config path on M1
+    on_arm do
+      inreplace "loch/getvtkver.tcl" do |s|
+        s.gsub! "searchdirs {/usr /usr/local}", "searchdirs {/opt/homebrew /usr /usr/local}"
+      end
+    end
+
+    # This removes the `doc` build rule, to solve pdftex not found
+    inreplace "Makefile" do |s|
+      s.gsub! "tests doc xtherion", "tests xtherion"
+    end
+
     etc.mkpath
     bin.mkpath
 
-    ENV.prepend_path "PATH", "/Libaray/TeX/texbin"
-    ENV.prepend_path "PKG_CONFIG_PATH", "/usr/local/opt/proj/lib/pkgconfig"
-
     ENV.deparallelize
 
-    # This removes the `doc` build rule, to solve pdftex not found
-    system "sed -ie '/^all:/ s/ doc / /g' Makefile"
     system "make", "config-macosx"
-    system "make"
+    system "make", "./therion"
+    system "make", "loch/loch"
     system "make", "install"
   end
 
