@@ -1,6 +1,7 @@
 class Therion < Formula
   homepage "https://therion.speleo.sk"
   desc "Therion creates realistic 3D models from 2D maps without quantity of additional information. LRUD dimensions are also supported."
+  revision 2
 
   version "6.2.1"
   url "https://github.com/therion/therion/archive/v#{version}.tar.gz"
@@ -13,6 +14,7 @@ class Therion < Formula
   depends_on "fmt"
   depends_on "vtk"
   depends_on "wxwidgets"
+  depends_on "bwidgets"
 
   def install
     inreplace "makeinstall.tcl" do |s|
